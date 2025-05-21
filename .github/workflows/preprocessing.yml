@@ -34,4 +34,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: processed-dataset
-        path: namadataset_preprocessing/creditapproval-data_processed.csv
+        path: preprocessing
