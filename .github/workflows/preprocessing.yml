@@ -1,0 +1,36 @@
+name: Preprocessing Dataset Otomatis
+
+on:
+  push:
+    branches:
+      - main       # jalankan saat ada push ke branch main
+  workflow_dispatch:  # bisa trigger manual lewat GitHub UI
+
+jobs:
+  preprocessing:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas scikit-learn
+
+    - name: Jalankan script preprocessing
+      run: python preprocessing/automate_AuliyaSabrinaVyantika.py
+
+    - name: Commit dan push file hasil preprocessing
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'actions@github.com'
+        git add namadataset_preprocessing/creditapproval-data_processed.csv
+        git commit -m "Update hasil preprocessing otomatis" || echo "Tidak ada perubahan"
+        git push
