@@ -29,7 +29,7 @@ def preprocess(filepath):
 
 if __name__ == "__main__":
     raw_path = 'namadataset_raw/creditapproval-data_raw.csv'   # path dataset mentah
-    processed_path = 'namadataset_preprocessing/creditapproval-data_processed.csv'  # path hasil preprocess
+    processed_path = 'preprocessing/namadataset_preprocessing/creditapproval-data_processed.csv'  # path hasil preprocess
 
     os.makedirs('namadataset_preprocessing', exist_ok=True)
 
