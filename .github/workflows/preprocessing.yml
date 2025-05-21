@@ -41,4 +41,14 @@ jobs:
       with:
         name: processed-dataset
         path: preprocessing/namadataset_preprocessing/creditapproval-data_processed.csv
+  
+    - name: Commit dan Push file hasil preprocessing ke repo
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add preprocessing/namadataset_preprocessing/creditapproval-data_processed.csv
+        git commit -m "Update hasil preprocessing otomatis"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
