@@ -1,10 +1,10 @@
-name: Automation Preprocess Dataset
+name: Preprocessing Dataset Otomatis
 
 on:
   push:
     paths:
       - "preprocessing/automate_AuliyaSabrinaVyantika.py"
-      - "namadataset_raw/creditapproval-data_raw.csv"
+      - "creditapproval-data_raw.csv"
       - ".github/workflows/**"
   workflow_dispatch:
 
@@ -15,23 +15,22 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
-      
-    - name: Set up Python
+
+    - name: Setup Python
       uses: actions/setup-python@v4
       with:
-        python-version: "3.12"
-      
-    - name: Install Dependencies
+        python-version: "3.12.7"
+
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pandas scikit-learn
 
-    - name: Run Preprocessing Script
-      run: |
-        python preprocessing/automate_AuliyaSabrinaVyantika.py
+    - name: Jalankan script preprocessing
+      run: python preprocessing/automate_AuliyaSabrinaVyantika.py
 
-    - name: Upload Cleaned Dataset
+    - name: Upload Hasil Preprocessing
       uses: actions/upload-artifact@v4
       with:
         name: processed-dataset
-        path: preprocessing
+        path: namadataset_preprocessing/creditapproval-data_processed.csv
